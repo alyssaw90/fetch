@@ -19,7 +19,31 @@ myFetchApp.factory('UserService',['$http',function($http){
       }).error(function(err){
         callback(err)
       })
+    },
+    logout:function(callback){
+      var self = this;
+      $http.delete('/api/auth')
+      .success(function(data){
+        self.currentUser = false;
+        callback(null,data);
+      }).error(function(err){
+        callback(err);
+      })
+    },
+       check:function(callback){ //Check to see if user is still logged in.
+        var self = this;
+        $http.get('/api/auth')
+        .success(function(data){
+          if(data && data.user){
+            self.currentUser = data.user;
+          }else{
+            self.currentUser = false;
+          }
+          callback(null,data)
+        }).error(function(err){
+          callback(err);
+        })
+      }
     }
-  }
 
-}]);
+  }]);

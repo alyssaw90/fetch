@@ -27,7 +27,6 @@ myFetchApp.controller('MainNavCtrl',['$scope', '$location', '$modal', 'UserServi
 
   $scope.logout = function(){
     UserService.logout(function(err,data){
-
     });
   }
 

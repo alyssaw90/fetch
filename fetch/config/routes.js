@@ -35,7 +35,9 @@ module.exports.routes = {
   '/': "PagesController.index",
 
    //Authorization routes
-   'post /api/auth':'AuthController.login',
+  'post /api/auth':'AuthController.login',
+  'delete /api/auth':'AuthController.logout',
+  'get /api/auth':'AuthController.check',
 
   "get *": {
     controller:"PagesController",
