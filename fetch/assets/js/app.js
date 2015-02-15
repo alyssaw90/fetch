@@ -9,5 +9,13 @@ myFetchApp.config(['$routeProvider','$locationProvider',function($routeProvider,
     templateUrl: '/views/home.html',
     controller: 'HomeCtrl'
   })
+  .when('/meetandgreet', {
+    templateUrl: '/views/meetandgreet.html',
+    controller: 'MeetGreetCtrl'
+  })
+  .when('/schedulewalk', {
+    templateUrl: '/views/schedulewalk.html',
+    controller: 'ScheduleWalkCtrl'
+  })
 }]);
 
