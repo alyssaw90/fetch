@@ -27,8 +27,8 @@ myFetchApp.controller('AuthModalCtrl',['$scope','$http','$modalInstance','UserSe
             return;
         }
         var signupData={
-            firstName:$scope.signupFirstName,
-            lastName:$scope.signupLastName,
+            firstName:$scope.firstName,
+            lastName:$scope.lastName,
             email:$scope.signupEmail,
             number:$scope.signupNumber,
             password:$scope.signupPassword
