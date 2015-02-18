@@ -1,10 +1,7 @@
 myFetchApp.controller('AuthModalCtrl',['$scope','$http','$modalInstance','UserService','AlertService',function($scope,$http,$modalInstance,UserService,AlertService){
 
-    $scope.loginData={email:'',password:''};
-    $scope.signupData={};
-
     $scope.login = function(){
-        UserService.login($scope.loginData.email,$scope.loginData.password,
+        UserService.login($scope.email,$scope.password,
             function(err,data){
                 if(err){
                     //server error
@@ -23,21 +20,22 @@ myFetchApp.controller('AuthModalCtrl',['$scope','$http','$modalInstance','UserSe
     $scope.signup = function(){
 
         if($scope.signupPassword != $scope.signupPasswordConfirm){
-            alert('your password confirmation does not match');
+            AlertService.add('danger','Password is not a match.')
             return;
         }
+
         var signupData={
+            email:$scope.email,
+            password:$scope.password,
             firstName:$scope.firstName,
-            lastName:$scope.lastName,
-            email:$scope.signupEmail,
-            number:$scope.signupNumber,
-            password:$scope.signupPassword
+            lastName:$scope.lastName
         };
+
         console.log(signupData);
+
         $http.post('/api/user',signupData)
         .success(function(data){
-            AlertService.add('success','You have been signed up.');
-            $modalInstance.close();
+            $scope.login()
         })
         .error(function(err){
             console.log(err);
